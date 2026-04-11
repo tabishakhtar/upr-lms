@@ -14,7 +14,7 @@ const app = express();
 app.use(cors({
  origin: [
   "http://localhost:3000",
-  process.env.FRONTEND_URL
+  "https://upr-9ih33ruad-tabish-akhtars-projects.vercel.app"
  ],
  credentials: true
 }));
@@ -51,7 +51,7 @@ const io = new Server(server, {
  cors: {
   origin: [
    "http://localhost:3000",
-   process.env.FRONTEND_URL
+   "https://upr-9ih33ruad-tabish-akhtars-projects.vercel.app"
   ],
   methods: ["GET", "POST"],
   credentials: true
