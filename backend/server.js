@@ -12,7 +12,10 @@ const app = express();
 
 // ================= MIDDLEWARE =================
 app.use(cors({
- origin: "*",
+ origin: [
+  "http://localhost:3000",
+  process.env.FRONTEND_URL
+ ],
  credentials: true
 }));
 app.use(express.json());
@@ -46,8 +49,12 @@ const server = http.createServer(app);
 // ================= SOCKET =================
 const io = new Server(server, {
  cors: {
-  origin: "http://localhost:3000",
-  methods: ["GET", "POST"]
+  origin: [
+   "http://localhost:3000",
+   process.env.FRONTEND_URL
+  ],
+  methods: ["GET", "POST"],
+  credentials: true
  }
 });
 

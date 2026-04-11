@@ -39,7 +39,7 @@ function CourseDetails(){
     {lectures.map((lec)=>{
 
      const fileUrl = lec.fileUrl
-      ? `http://localhost:5000${lec.fileUrl}`
+       ? `${process.env.REACT_APP_API_URL}${lec.fileUrl}`
       : null;
 
      return(

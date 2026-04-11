@@ -1,70 +1,217 @@
-# Getting Started with Create React App
+# 🎓 UPR LMS – Frontend (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend of the **UPR Learning Management System (LMS)** built using React.
+It provides a modern UI for students and teachers to interact with lectures, chat, attendance, and results.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Live Demo
+
+👉 Frontend (Vercel):
+https://your-project.vercel.app
+
+👉 Backend (Render):
+https://upr-lms-backend.onrender.com
+
+---
+
+## ⚙️ Tech Stack
+
+* React (Create React App)
+* React Router DOM
+* Axios
+* Socket.io Client
+* Tailwind CSS / Bootstrap
+* Recharts
+
+---
+
+## 📁 Project Structure
+
+```
+frontend/
+│── src/
+│   ├── pages/
+│   ├── components/
+│   ├── api.js
+│   └── App.js
+│
+│── public/
+│── .env
+│── package.json
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a file in the frontend root:
+
+```
+frontend/.env
+```
+
+Add:
+
+```
+REACT_APP_API_URL=https://upr-lms-backend.onrender.com
+```
+
+⚠️ Important:
+
+* Must start with `REACT_APP_`
+* Restart deployment after changes
+
+---
+
+## 📡 API Configuration
+
+All API calls use:
+
+```js
+process.env.REACT_APP_API_URL
+```
+
+Example:
+
+```js
+axios.get(`${process.env.REACT_APP_API_URL}/api/users`);
+```
+
+---
+
+## 🔌 Socket Connection
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io(process.env.REACT_APP_API_URL, {
+  transports: ["websocket"]
+});
+
+export default socket;
+```
+
+---
+
+## ▶️ Available Scripts
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Run development server:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+http://localhost:3000
+```
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `npm test`
 
-### `npm run eject`
+Runs tests.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🌍 Deployment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend (Vercel)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* Root Directory: `frontend`
+* Build Command:
 
-## Learn More
+```
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Output Directory:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+build
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Backend (Render)
 
-### Analyzing the Bundle Size
+Ensure CORS is enabled:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```js
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://your-project.vercel.app"
+  ],
+  credentials: true
+}));
+```
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## ⚠️ Common Issues
 
-### Advanced Configuration
+### ❌ API not working
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* Check backend URL
+* Check `.env` file
+* Check CORS settings
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### ❌ Images / Files not loading
 
-### `npm run build` fails to minify
+Replace:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+http://localhost:5000
+```
+
+With:
+
+```
+process.env.REACT_APP_API_URL
+```
+
+---
+
+### ❌ Socket not connecting
+
+* Check backend socket config
+* Ensure correct URL in frontend
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Ammar Sajid**
+
+---
+
+## ⭐ Features
+
+* 📚 Lecture Upload & View
+* 💬 Real-time Chat (Socket.io)
+* 📊 Student Results & Attendance
+* 🎥 Media Support (Audio/Images)
+* 👨‍🏫 Teacher Dashboard
+
+---
+
+## 📌 Notes
+
+* This project is part of a MERN stack system
+* Backend is hosted on Render
+* Frontend is hosted on Vercel
+
+---
+
+## 🎉 Status
+
+✅ Fully Deployed
+✅ Frontend + Backend Connected
+🚀 Production Ready

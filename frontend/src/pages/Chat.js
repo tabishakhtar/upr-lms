@@ -226,8 +226,8 @@ function Chat() {
 
         {m.file && (
          m.file.includes("audio")
-         ? <audio controls src={`http://localhost:5000/${m.file}`}/>
-         : <img src={`http://localhost:5000/${m.file}`} className="mt-2 rounded"/>
+         ? <audio controls src={`${process.env.REACT_APP_API_URL}/${m.file}`}/>
+         : <img src={`${process.env.REACT_APP_API_URL}/${m.file}`} className="mt-2 rounded"/>
         )}
 
        </div>
