@@ -12,11 +12,8 @@ const app = express();
 
 // ================= MIDDLEWARE =================
 app.use(cors({
- origin: [
-  "http://localhost:3000",
-  "https://upr-a7e6i8zim-tabish-akhtars-projects.vercel.app"
- ],
- credentials: true
+  origin: true,
+  credentials: true
 }));
 app.use(express.json());
 
@@ -48,14 +45,11 @@ const server = http.createServer(app);
 
 // ================= SOCKET =================
 const io = new Server(server, {
- cors: {
-  origin: [
-   "http://localhost:3000",
-   "https://upr-a7e6i8zim-tabish-akhtars-projects.vercel.app"
-  ],
-  methods: ["GET", "POST"],
-  credentials: true
- }
+  cors: {
+    origin: true,
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
 
 global.io = io;
